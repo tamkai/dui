@@ -1,0 +1,6 @@
+__pycache__/
+out/
+tool/config.json
+*.mp4
+*.wav
+.venv/

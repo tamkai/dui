@@ -1,0 +1,76 @@
+{
+  "_comment": "DUI 確認用動画の設定。config.example.json を config.json に写して、自分の環境に合わせて直す。相対パスはこのファイルの場所から、~ はホームに展開する。ref_wav は声質を揃える参照音声（任意。空なら指示文だけで声を作る）",
+  "python": "~/irodori-tts/.venv/bin/python",
+  "irodori_dir": "~/irodori-tts",
+  "check_script": "../skill/scripts/check_script.py",
+  "output_dir": "../out",
+  "voice": {
+    "checkpoint_repo": "Aratako/Irodori-TTS-600M-v3-VoiceDesign",
+    "ref_wav": "",
+    "caption": "明瞭な日本語。落ち着いた会話調で、大切な言葉を少し強調する。",
+    "num_steps": 32,
+    "seed": 7,
+    "codec_device": "mps",
+    "speed": 1.13,
+    "max_sec": {
+      "base": 0.6,
+      "per_char": 0.22,
+      "per_pause": 0.25
+    }
+  },
+  "asr": {
+    "model": "small",
+    "cpu_threads": 6,
+    "max_retries": 2,
+    "min_ratio": 0.6,
+    "min_tail_ratio": 0.5,
+    "length_range": [
+      0.7,
+      1.4
+    ]
+  },
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "crf": 22,
+    "max_mb": 9.5,
+    "lead_sec": 0.25,
+    "gap_sec": 0.45,
+    "question_hold_sec": 1.5
+  },
+  "fonts": {
+    "bold": [
+      "/System/Library/Fonts/ヒラギノ角ゴシック W7.ttc",
+      "/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc",
+      "/System/Library/Fonts/Hiragino Sans GB.ttc"
+    ],
+    "regular": [
+      "/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc",
+      "/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc",
+      "/System/Library/Fonts/Hiragino Sans GB.ttc"
+    ],
+    "emoji": [
+      "/System/Library/Fonts/Apple Color Emoji.ttc"
+    ]
+  },
+  "theme": {
+    "bg": "#F7F4EC",
+    "text": "#1B1F2A",
+    "sub": "#5A6070",
+    "accent": "#D9480F",
+    "card": "#FFFFFF",
+    "line": "#B9B2A2",
+    "good": "#1E6B3A",
+    "bad": "#B42318",
+    "button": "#1B1F2A",
+    "button_text": "#FFFFFF",
+    "button_alt": "#2F5DA8",
+    "button_alt_text": "#FFFFFF"
+  },
+  "cleanup": {
+    "days": 3,
+    "keep_file": "keep.txt",
+    "keep_word": "keep"
+  }
+}

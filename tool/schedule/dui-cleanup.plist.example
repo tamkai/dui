@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  DUI 確認用動画の定期削除（launchd の例。まだ登録していない）
+  使う人は __DUI_TOOL__ を tool/ の絶対パスに置き換え、~/Library/LaunchAgents/ に置いて:
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.dui-cleanup.plist
+  外す:
+    launchctl bootout gui/$(id -u)/local.dui-cleanup
+  毎日 4:30 に動く。スリープ中だった時は起きた後に 1 回動く。
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>local.dui-cleanup</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>__DUI_TOOL__/cleanup.py</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>4</integer><key>Minute</key><integer>30</integer></dict>
+  <key>StandardOutPath</key><string>/tmp/dui-cleanup.log</string>
+  <key>StandardErrorPath</key><string>/tmp/dui-cleanup.log</string>
+  <key>RunAtLoad</key><false/>
+</dict>
+</plist>
