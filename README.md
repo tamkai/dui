@@ -54,9 +54,14 @@ python3 tool/cleanup.py --dry-run
 
 ```bash
 cp -R skill ~/.claude/skills/dui      # Claude Code の例
+ln -s "$PWD/skill" ~/.claude/skills/dui   # リンクで置けば git pull がそのまま反映される
 ```
 
 SKILL.md の中の `tool/` は、このリポジトリの `tool/` を指します。置いた場所に合わせて読み替えてください。
+
+### Claude Code でも使える
+
+Discord などのチャットがなくても、Claude Code の中で同じ流れが回ります。AI が確認用動画を作って開き、選択肢は Claude Code の選択肢ダイアログで出します。人は押すか、「その他」に書くか、音声入力で話すだけです。詳しくは SKILL.md の「チャットに出す（Claude Code の場合）」。
 
 ## 台本の形
 
