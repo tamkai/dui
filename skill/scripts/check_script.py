@@ -16,9 +16,13 @@ VAGUE = ("対応する", "検討する", "いい感じ", "適宜")
 
 def main() -> int:
     errs, warns = [], []
+    # Windows（cp932）でも、PowerShell のパイプが付ける BOM でも読めるように、バイト列を utf-8-sig で読む
+    raw = sys.stdin.buffer.read()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     try:
-        doc = json.load(sys.stdin)
-    except json.JSONDecodeError as e:
+        doc = json.loads(raw.decode("utf-8-sig"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as e:
         print(f"error: JSON として読めない: {e}")
         return 1
     for k in ("decision", "decider", "scenes"):
